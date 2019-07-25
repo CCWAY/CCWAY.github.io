@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/logo.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Python,Linux,MySQL,,博客,编程,IT,CSS,javascript,前端,后端,web开发">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="进程 线程 协程 异步IO线程和进程对比 使用线程的方式不能很好的使用多核cpu的能力 12345678910111213import randomimport threadingresults = []def compute():   results.append(sum(       [random.randint(1, 100) for i in range(1000000)]))worke">
+<meta property="og:type" content="article">
+<meta property="og:title" content="进程 线程 协程 异步IO">
+<meta property="og:url" content="http://mjlin.top/2019/04/10/进程/index.html">
+<meta property="og:site_name" content="每日一敲">
+<meta property="og:description" content="进程 线程 协程 异步IO线程和进程对比 使用线程的方式不能很好的使用多核cpu的能力 12345678910111213import randomimport threadingresults = []def compute():   results.append(sum(       [random.randint(1, 100) for i in range(1000000)]))worke">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-07-25T06:11:42.445Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="进程 线程 协程 异步IO">
+<meta name="twitter:description" content="进程 线程 协程 异步IO线程和进程对比 使用线程的方式不能很好的使用多核cpu的能力 12345678910111213import randomimport threadingresults = []def compute():   results.append(sum(       [random.randint(1, 100) for i in range(1000000)]))worke">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://mjlin.top/2019/04/10/进程/">
+
+
+
+
+
+  <title>进程 线程 协程 异步IO | 每日一敲</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">每日一敲</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">技术分享</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>
+            
+            日程表
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://mjlin.top/2019/04/10/进程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yosefu">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="每日一敲">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">进程 线程 协程 异步IO</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-10T20:29:44+08:00">
+                2019-04-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/多线程和多进程/" itemprop="url" rel="index">
+                    <span itemprop="name">多线程和多进程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.4k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  10
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="进程-线程-协程-异步IO"><a href="#进程-线程-协程-异步IO" class="headerlink" title="进程 线程 协程 异步IO"></a>进程 线程 协程 异步IO</h1><p>线程和进程对比</p>
+<p>使用线程的方式不能很好的使用多核cpu的能力</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line">results = []</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">compute</span><span class="params">()</span>:</span></span><br><span class="line">   results.append(sum(</span><br><span class="line">       [random.randint(<span class="number">1</span>, <span class="number">100</span>) <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1000000</span>)]))</span><br><span class="line">workers = [threading.Thread(target=compute) <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">8</span>)]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> worker <span class="keyword">in</span> workers:</span><br><span class="line">    worker.start()</span><br><span class="line"><span class="keyword">for</span> worker <span class="keyword">in</span> workers:</span><br><span class="line">    worker.join()</span><br><span class="line">print(<span class="string">"Results: %s"</span> % results)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> time python worker.py</span></span><br><span class="line">Results: [50517927, 50496846, 50494093, 50503078, 50512047, 50482863, 50543387, 50511493]</span><br><span class="line">python worker.py 13.04s user 2.11s system 129% cpu 11.662 total</span><br></pre></td></tr></table></figure>
+
+<p>使用进程可以利用多核CPU的优势</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> multiprocessing</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">compute</span><span class="params">(n)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> sum(</span><br><span class="line">        [random.randint(<span class="number">1</span>, <span class="number">100</span>) <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1000000</span>)])</span><br><span class="line"><span class="comment"># Start 8 workers</span></span><br><span class="line">pool = multiprocessing.Pool(processes=<span class="number">8</span>)</span><br><span class="line">print(<span class="string">"Results: %s"</span> % pool.map(compute, range(<span class="number">8</span>)))</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> time python workermp.py</span></span><br><span class="line">Results: [50495989, 50566997, 50474532, 50531418, 50522470, 50488087,0498016, 50537899]</span><br><span class="line">python workermp.py  16.53s user 0.12s system 363% cpu 4.581 total</span><br></pre></td></tr></table></figure>
+
+<h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h2><p>Python中的多线程无法利用多核优势 , 所以如果我们想要充分地使用多核CPU的资源 , 那么就只能靠多进程了</p>
+<p>multiprocessing模块中提供了Process , Queue , Pipe , Lock , RLock , Event , Condition等组件 , 与threading模块有很多相似之处</p>
+<h3 id="1-创建进程"><a href="#1-创建进程" class="headerlink" title="1.创建进程"></a>1.创建进程</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Process</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">def func(name):</span><br><span class="line">    time.sleep(<span class="number">2</span>)</span><br><span class="line">    print(<span class="string">'hello'</span>,name)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    p= Process(target=func,args=(<span class="string">'derek'</span>,))</span><br><span class="line">    p.start()</span><br><span class="line">    # p.join()</span><br><span class="line">    print(<span class="string">'end...'</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-进程间通讯"><a href="#2-进程间通讯" class="headerlink" title="2.进程间通讯"></a><strong>2.进程间通讯</strong></h3><p><strong>（1）Queue</strong></p>
+<p>不同进程间内存是不共享的，要想实现两个进程间的数据交换。进程间通信有两种主要形式 , 队列和管道</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">from multiprocessing import Process, Queue   #Queue是进程排列</span><br><span class="line"></span><br><span class="line">def f(test):</span><br><span class="line">    test.put('22')   #通过创建的子进程往队列添加数据，实线父子进程交互</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    q = Queue()      #父进程</span><br><span class="line">    q.put(<span class="string">"11"</span>)</span><br><span class="line"></span><br><span class="line">    p = Process(target=f, args=(q,))   #子进程</span><br><span class="line">    p.start()</span><br><span class="line">    p.join()</span><br><span class="line"></span><br><span class="line">    print(<span class="string">"取到："</span>,q.get_nowait())</span><br><span class="line">    print(<span class="string">"取到："</span>,q.get_nowait())</span><br><span class="line"></span><br><span class="line">#父进程在创建子进程的时候就把q克隆一份给子进程</span><br><span class="line">#通过pickle序列化、反序列化，来达到两个进程之间的交互</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">结果：</span><br><span class="line">取到： <span class="number">11</span></span><br><span class="line">取到： <span class="number">22</span></span><br></pre></td></tr></table></figure>
+
+<p>（2）Pipe(管道)</p>
+<p>The <code>Pipe()</code> function returns a pair of connection objects connected by a pipe which by default is duplex (two-way).</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Process, Pipe</span><br><span class="line"></span><br><span class="line">def f(conn):</span><br><span class="line">    conn.send(<span class="string">'11'</span>)</span><br><span class="line">    conn.send(<span class="string">'22'</span>)</span><br><span class="line">    print(<span class="string">"from parent:"</span>,conn.recv())</span><br><span class="line">    print(<span class="string">"from parent:"</span>, conn.recv())</span><br><span class="line">    conn.close()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    parent_conn, child_conn = Pipe()   #生成管道实例，可以互相send（）和recv（）</span><br><span class="line"></span><br><span class="line">    p = Process(target=f, args=(child_conn,))</span><br><span class="line">    p.start()</span><br><span class="line"></span><br><span class="line">    print(parent_conn.recv())      # prints "11"</span><br><span class="line">    print(parent_conn.recv())      # prints "22"</span><br><span class="line">    parent_conn.send("33")         # parent 发消息给 child</span><br><span class="line">    parent_conn.send(<span class="string">"44"</span>)</span><br><span class="line">    p.join()</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-Manager"><a href="#3-Manager" class="headerlink" title="3.Manager"></a>3.Manager</h3><p>进程之间是相互独立的 ,Queue和pipe只是实现了数据交互，并没实现数据共享，Manager可以实现进程间数据共享 。</p>
+<p>Manager还支持进程中的很多操作 , 比如Condition , Lock , Namespace , Queue , RLock , Semaphore等</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Process, Manager</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">def f(d, l):</span><br><span class="line">    d[os.getpid()] =os.getpid()</span><br><span class="line">    l.append(os.getpid())</span><br><span class="line">    print(l)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    <span class="keyword">with</span> Manager() <span class="keyword">as</span> manager:</span><br><span class="line">        d = manager.dict()  #&#123;&#125; #生成一个字典，可在多个进程间共享和传递</span><br><span class="line"></span><br><span class="line">        l = manager.list(range(5))     #生成一个列表，可在多个进程间共享和传递</span><br><span class="line">        p_list = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>):</span><br><span class="line">            p = Process(target=f, args=(d, l))</span><br><span class="line">            p.start()</span><br><span class="line">            p_list.append(p)</span><br><span class="line">        for res in p_list: #等待结果</span><br><span class="line">            res.join()</span><br><span class="line">        print(d)</span><br><span class="line">        print(l)</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-lock"><a href="#4-lock" class="headerlink" title="4.lock"></a>4.lock</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Process, Lock</span><br><span class="line"></span><br><span class="line">def f(l, i):</span><br><span class="line">    #l.acquire()</span><br><span class="line">    print(<span class="string">'hello world'</span>, i)</span><br><span class="line">    #l.release()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    lock = Lock()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> num <span class="keyword">in</span> range(<span class="number">100</span>):</span><br><span class="line">        Process(target=f, args=(lock, num)).start()     #要把lock传到函数的参数l</span><br><span class="line">        </span><br><span class="line">#lock防止在屏幕上打印的时候会乱</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-进程池"><a href="#5-进程池" class="headerlink" title="5.进程池"></a>5.进程池</h3><p>进程池内部维护一个进程序列，当使用时，则去进程池中获取一个进程，如果进程池序列中没有可供使用的进程，那么程序就会等待，直到进程池中有可用进程为止。</p>
+<p>进程池中有以下几个主要方法：</p>
+<ol>
+<li>apply：从进程池里取一个进程并执行</li>
+<li>apply_async：apply的异步版本</li>
+<li>terminate:立刻关闭进程池</li>
+<li>join：主进程等待所有子进程执行完毕，必须在close或terminate之后</li>
+<li>close：等待所有进程结束后，才关闭进程池</li>
+</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span>  multiprocessing <span class="keyword">import</span> Process, Pool</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">def Foo(i):</span><br><span class="line">    time.sleep(<span class="number">2</span>)</span><br><span class="line">    print(<span class="string">"in process"</span>,os.getpid())</span><br><span class="line">    <span class="keyword">return</span> i + <span class="number">100</span></span><br><span class="line"></span><br><span class="line">def Bar(arg):</span><br><span class="line">    print(<span class="string">'--&gt;exec done:'</span>, arg,os.getpid())</span><br><span class="line"></span><br><span class="line">if __name__ == '__main__':    #多进程，必须加这一句（windows系统）</span><br><span class="line">    pool = Pool(processes=3) #允许进程池同时放入3个进程</span><br><span class="line">    print(<span class="string">"主进程"</span>,os.getpid())</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10</span>):       </span><br><span class="line">        pool.apply_async(func=Foo, args=(i,), callback=Bar) #callback=回调，执行完Foo(),接着执行Bar()</span><br><span class="line">        # pool.apply(func=Foo, args=(i,)) #串行</span><br><span class="line">        </span><br><span class="line">    print(<span class="string">'end'</span>)</span><br><span class="line">    pool.close()</span><br><span class="line">    pool.join()   #进程池中进程执行完毕后再关闭，如果注释，那么程序直接关闭。必须先close(),再join（）</span><br></pre></td></tr></table></figure>
+
+<h2 id="协程"><a href="#协程" class="headerlink" title="协程"></a>协程</h2><h3 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a><strong>1.简介</strong></h3><p>协程(Coroutine) : 是单线程下的并发 , 又称微线程 , 纤程 . 协程是一种用户态的轻量级线程 , 即协程有用户自己控制调度</p>
+<p>协程拥有自己的寄存器上下文和栈。协程调度切换时，将寄存器上下文和栈保存到其他地方，在切回来的时候，恢复先前保存的寄存器上下文和栈。</p>
+<p>协程能保留上一次调用时的状态（即所有局部状态的一个特定组合），每次过程重入时，就相当于进入上一次调用的状态</p>
+<p>使用协程的优缺点</p>
+<p>优点 :</p>
+<ol>
+<li>协程的切换开销更小 , 属于程序级别的切换 , 更加轻量级</li>
+<li>单线程内就可以实现并发的效果 , 最大限度利用CPU</li>
+</ol>
+<p>缺点 :</p>
+<ol>
+<li>协程的本质是单线程下 , 无法利用多核 , 可以是一个程序开启多个进程 , 每个进程内开启多个线程 , 每个线程内开启协程</li>
+<li>协程指的是单个线程 , 因而一旦协程出现阻塞 将会阻塞整个线程</li>
+</ol>
+<h3 id="2-Greenlet"><a href="#2-Greenlet" class="headerlink" title="2.Greenlet"></a><strong>2.Greenlet</strong></h3><p>greenlet是一个用C实现的协程模块，相比与python自带的yield，它可以使你在任意函数之间随意切换，而不需把这个函数先声明为generator</p>
+<p>手动切换</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> greenlet <span class="keyword">import</span> greenlet</span><br><span class="line"></span><br><span class="line">def test1():</span><br><span class="line">    print(<span class="number">12</span>)</span><br><span class="line">    gr2.switch()      #到这里切换到gr2，执行test2（）</span><br><span class="line">    print(<span class="number">34</span>)</span><br><span class="line">    gr2.switch()      #切换到上次gr2运行的位置</span><br><span class="line"></span><br><span class="line">def test2():</span><br><span class="line">    print(<span class="number">56</span>)</span><br><span class="line">    gr1.switch()      #切换到上次gr1运行的位置</span><br><span class="line">    print(<span class="number">78</span>)</span><br><span class="line"></span><br><span class="line">gr1 = greenlet(test1)      #启动一个协程gr1</span><br><span class="line">gr2 = greenlet(test2)      #启动一个协程gr2</span><br><span class="line"></span><br><span class="line">gr1.switch()        #开始运行gr1</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-Gevent"><a href="#3-Gevent" class="headerlink" title="3.Gevent"></a><strong>3.Gevent</strong></h3><p>Gevent 是一个第三方库，可以轻松通过gevent实现并发同步或异步编程，在gevent中用到的主要模式是Greenlet, 它是以C扩展模块形式接入Python的轻量级协程。</p>
+<p>（1）IO阻塞自动切换</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gevent</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'Running in foo'</span>)</span><br><span class="line">    gevent.sleep(<span class="number">2</span>)</span><br><span class="line">    print(<span class="string">'阻塞时间最长，最后运行'</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bar</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'running in bar'</span>)</span><br><span class="line">    gevent.sleep(<span class="number">1</span>)</span><br><span class="line">    print(<span class="string">'foo（）还在阻塞，这里第二个运行'</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func3</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">"running in func3 "</span>)</span><br><span class="line">    gevent.sleep(<span class="number">0</span>)</span><br><span class="line">    print(<span class="string">"其它两个还在IO阻塞先运行"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#创建协程实例</span></span><br><span class="line">gevent.joinall([</span><br><span class="line">    gevent.spawn(foo), <span class="comment">#生成，</span></span><br><span class="line">    gevent.spawn(bar),</span><br><span class="line">    gevent.spawn(func3),</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line"><span class="comment">#遇到IO自动切换</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">结果：</span><br><span class="line">Running <span class="keyword">in</span> foo</span><br><span class="line">running <span class="keyword">in</span> bar</span><br><span class="line">running <span class="keyword">in</span> func3 </span><br><span class="line">其它两个还在IO阻塞先运行</span><br><span class="line">foo（）还在阻塞，这里第二个运行</span><br><span class="line">阻塞时间最长，最后运行</span><br><span class="line"></span><br><span class="line">Process finished <span class="keyword">with</span> exit code <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<p> 由于切换是在IO操作时自动完成，所以gevent需要修改Python自带的一些标准库，这一过程在启动时通过monkey patch完成：</p>
+<p>（2）爬虫例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> urllib <span class="keyword">import</span> request</span><br><span class="line"><span class="keyword">import</span> gevent,time</span><br><span class="line"><span class="keyword">from</span> gevent <span class="keyword">import</span> monkey</span><br><span class="line">monkey.patch_all() #作用：把当前程序的所有的io操作给我单独的做上标记</span><br><span class="line"></span><br><span class="line">def f(url):</span><br><span class="line">    print(<span class="string">'GET: %s'</span> % url)</span><br><span class="line">    resp = request.urlopen(url)</span><br><span class="line">    data = resp.read()</span><br><span class="line">    print(<span class="string">'%d bytes received from %s.'</span> % (len(data), url))</span><br><span class="line"></span><br><span class="line">#同步需要的时间</span><br><span class="line">urls = [<span class="string">'https://www.python.org/'</span>,</span><br><span class="line">        <span class="string">'https://www.yahoo.com/'</span>,</span><br><span class="line">        <span class="string">'https://github.com/'</span> ]</span><br><span class="line">time_start = time.time()</span><br><span class="line"><span class="keyword">for</span> url <span class="keyword">in</span> urls:</span><br><span class="line">    f(url)</span><br><span class="line">print(<span class="string">"同步cost"</span>,time.time() - time_start)</span><br><span class="line"></span><br><span class="line">#下面是异步花费的时间</span><br><span class="line">async_time_start = time.time()</span><br><span class="line">gevent.joinall([</span><br><span class="line">    gevent.spawn(f, <span class="string">'https://www.python.org/'</span>),</span><br><span class="line">    gevent.spawn(f, <span class="string">'https://www.yahoo.com/'</span>),</span><br><span class="line">    gevent.spawn(f, <span class="string">'https://github.com/'</span>),</span><br><span class="line">])</span><br><span class="line">print(<span class="string">"异步cost"</span>,time.time() - async_time_start)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">结果：</span><br><span class="line">GET: https:<span class="comment">//www.python.org/</span></span><br><span class="line"><span class="number">48954</span> bytes received <span class="keyword">from</span> https:<span class="comment">//www.python.org/.</span></span><br><span class="line">GET: https:<span class="comment">//www.yahoo.com/</span></span><br><span class="line"><span class="number">491871</span> bytes received <span class="keyword">from</span> https:<span class="comment">//www.yahoo.com/.</span></span><br><span class="line">GET: https:<span class="comment">//github.com/</span></span><br><span class="line"><span class="number">51595</span> bytes received <span class="keyword">from</span> https:<span class="comment">//github.com/.</span></span><br><span class="line">同步cost <span class="number">4.928282260894775</span></span><br><span class="line">GET: https:<span class="comment">//www.python.org/</span></span><br><span class="line">GET: https:<span class="comment">//www.yahoo.com/</span></span><br><span class="line">GET: https:<span class="comment">//github.com/</span></span><br><span class="line"><span class="number">48954</span> bytes received <span class="keyword">from</span> https:<span class="comment">//www.python.org/.</span></span><br><span class="line"><span class="number">494958</span> bytes received <span class="keyword">from</span> https:<span class="comment">//www.yahoo.com/.</span></span><br><span class="line"><span class="number">51599</span> bytes received <span class="keyword">from</span> https:<span class="comment">//github.com/.</span></span><br><span class="line">异步cost <span class="number">1.4920852184295654</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="IO多路复用"><a href="#IO多路复用" class="headerlink" title="IO多路复用"></a>IO多路复用</h2><p>详解：<a href="http://www.cnblogs.com/alex3714/articles/5876749.html" target="_blank" rel="noopener">http://www.cnblogs.com/alex3714/articles/5876749.html</a></p>
+<h2 id="selectors模块"><a href="#selectors模块" class="headerlink" title="selectors模块"></a>selectors模块</h2><p>selectors基于select模块实现IO多路复用，调用语句<code>selectors.DefaultSelector()</code>，特点是根据平台自动选择最佳IO多路复用机制，调用顺序：epoll &gt; poll &gt; select</p>
+<p>做一个socket servers</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> selectors</span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line">sel = selectors.DefaultSelector()        # 根据平台自动选择最佳IO多路复用机制</span><br><span class="line"></span><br><span class="line">def accept(sock, mask):</span><br><span class="line">    conn, addr = sock.accept()           # Should be ready</span><br><span class="line">    # print('accepted', conn, 'from', addr,mask)</span><br><span class="line">    conn.setblocking(False)              #设置为非阻塞IO</span><br><span class="line">    sel.register(conn, selectors.EVENT_READ, read)</span><br><span class="line">                                         #新连接注册read回调函数</span><br><span class="line">                                         #将conn和read函数注册到一起，当conn有变化时执行read函数</span><br><span class="line"></span><br><span class="line">def read(conn, mask):</span><br><span class="line">    data = conn.recv(1024)  # Should be ready</span><br><span class="line">    <span class="keyword">if</span> data:</span><br><span class="line">        print(<span class="string">'echoing'</span>, repr(data), <span class="string">'to'</span>, conn)</span><br><span class="line">        conn.send(data)                  # Hope it won't block</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">'closing'</span>, conn)</span><br><span class="line">        sel.unregister(conn)</span><br><span class="line">        conn.close()</span><br><span class="line"></span><br><span class="line">sock = socket.socket()</span><br><span class="line">sock.bind((<span class="string">'localhost'</span>, <span class="number">9999</span>))</span><br><span class="line">sock.listen(<span class="number">100</span>)</span><br><span class="line">sock.setblocking(False)             #设置为非阻塞IO</span><br><span class="line">sel.register(sock, selectors.EVENT_READ, accept)</span><br><span class="line">                                    # 将sock和accept函数注册到一起，当sock有变化时执行accept函数</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> True:</span><br><span class="line">    events = sel.select()  #默认阻塞，有活动连接就返回活动的连接列表，监听[(key1,mask1),(key2),(mask2)]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> key, mask <span class="keyword">in</span> events:</span><br><span class="line">        callback = key.data                 #accept      #1 key.data就是accept   # 2 key.data就是read</span><br><span class="line">        callback(key.fileobj, mask)         #key.fileobj=  文件句柄</span><br><span class="line">                                            # 1 key.fileobj就是sock   # 2 key.fileobj就是conn</span><br><span class="line">client</span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line">messages = [ b<span class="string">'This is the message. '</span>,</span><br><span class="line">             b<span class="string">'It will be sent '</span>,</span><br><span class="line">             b<span class="string">'in parts.'</span>,</span><br><span class="line">             ]</span><br><span class="line">server_address = (<span class="string">'localhost'</span>, <span class="number">9999</span>)</span><br><span class="line"></span><br><span class="line"># Create a TCP/IP socket</span><br><span class="line">socks = [ socket.socket(socket.AF_INET, socket.SOCK_STREAM) <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>)]</span><br><span class="line">print(socks)</span><br><span class="line"># Connect the socket to the port where the server is listening</span><br><span class="line">print(<span class="string">'connecting to %s port %s'</span> % server_address)</span><br><span class="line"><span class="keyword">for</span> s <span class="keyword">in</span> socks:</span><br><span class="line">    s.connect(server_address)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> message <span class="keyword">in</span> messages:</span><br><span class="line"></span><br><span class="line">    # Send messages on both sockets</span><br><span class="line">    <span class="keyword">for</span> s <span class="keyword">in</span> socks:</span><br><span class="line">        print(<span class="string">'%s: sending "%s"'</span> % (s.getsockname(), message) )</span><br><span class="line">        s.send(message)</span><br><span class="line"></span><br><span class="line">    # Read responses on both sockets</span><br><span class="line">    <span class="keyword">for</span> s <span class="keyword">in</span> socks:</span><br><span class="line">        data = s.recv(<span class="number">1024</span>)</span><br><span class="line">        print( <span class="string">'%s: received "%s"'</span> % (s.getsockname(), data) )</span><br><span class="line">        <span class="keyword">if</span> not data:</span><br><span class="line">            print( <span class="string">'closing socket'</span>, s.getsockname() )</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div><p style="font-size:14px; color:#34495e; margin:0 0 5px 0;">赞赏一下吧～</p></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/Wechat.png" alt="Yosefu 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/10/Ubuntu踩坑记录/" rel="prev" title="Ubuntu踩坑纪录">
+                Ubuntu踩坑纪录 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Yosefu</p>
+              <p class="site-description motion-element" itemprop="description">本站为本人平时学习时搜集的一些资料，主要是Python开发相关技术。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#进程-线程-协程-异步IO"><span class="nav-number">1.</span> <span class="nav-text">进程 线程 协程 异步IO</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#进程"><span class="nav-number">1.1.</span> <span class="nav-text">进程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-创建进程"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.创建进程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-进程间通讯"><span class="nav-number">1.1.2.</span> <span class="nav-text">2.进程间通讯</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Manager"><span class="nav-number">1.1.3.</span> <span class="nav-text">3.Manager</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-lock"><span class="nav-number">1.1.4.</span> <span class="nav-text">4.lock</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-进程池"><span class="nav-number">1.1.5.</span> <span class="nav-text">5.进程池</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#协程"><span class="nav-number">1.2.</span> <span class="nav-text">协程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-简介"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Greenlet"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.Greenlet</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Gevent"><span class="nav-number">1.2.3.</span> <span class="nav-text">3.Gevent</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IO多路复用"><span class="nav-number">1.3.</span> <span class="nav-text">IO多路复用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#selectors模块"><span class="nav-number">1.4.</span> <span class="nav-text">selectors模块</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-[object Object]"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yosefu</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">13.8k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
