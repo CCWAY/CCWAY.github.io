@@ -5,8 +5,9 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next mist use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.9.0">
+  <meta name="google-site-verification" content="-YPbgjltFVFljoCm04Ktk0m38A8CkQxpifuKVZXtawA">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -38,10 +39,6 @@
 
 
 
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
 
 
 
@@ -53,22 +50,22 @@
 <link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/logo.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.png?v=5.1.4">
 
 
-  <link rel="mask-icon" href="/images/logo.png?v=5.1.4" color="#222">
+  <link rel="mask-icon" href="/images/avatar.png?v=5.1.4" color="#222">
 
 
 
 
 
-  <meta name="keywords" content="Python,Linux,MySQL,,博客,编程,IT,CSS,javascript,前端,后端,web开发">
+  <meta name="keywords" content="Python,个人博客,博客,编程,IT,CSS,javascript,前端,后端,web开发">
 
 
 
@@ -96,10 +93,10 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Mist',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
-    fancybox: true,
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
@@ -124,7 +121,7 @@
 
 
 
-  <title>每日一敲</title>
+  <title>每日一敲 - 技术分享</title>
   
 
 
@@ -134,6 +131,15 @@
 
 
 
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-139884627-1"></script>
+  <script type="text/javascript" src="http://tajs.qq.com/stats?sId=66410872" charset="UTF-8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-139884627-1');
+  </script>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -145,7 +151,9 @@
 
   <div class="container sidebar-position-left 
   page-home">
+
     <div class="headband"></div>
+    
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
@@ -154,13 +162,14 @@
 
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">每日一敲</span>
-        <span class="logo-line-after"><i></i></span>
+        <!-- <span class="logo-line-before"><i></i></span> -->
+        <!-- <span class="site-title">每日一敲</span> -->
+	     <img src="/images/logo5.png">
+        <!-- <span class="logo-line-after"><i></i></span> -->
       </a>
     </div>
       
-        <p class="site-subtitle">技术分享</p>
+        <h1 class="site-subtitle" itemprop="description">技术分享</h1>
       
   </div>
 
@@ -190,16 +199,6 @@
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
@@ -220,12 +219,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-schedule">
-          <a href="/schedule/" rel="section">
+        <li class="menu-item menu-item-top">
+          <a href="/top/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-signal"></i> <br>
             
-            日程表
+            热门
           </a>
         </li>
       
@@ -279,7 +278,876 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
+
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<style type="text/css">
+
+.glyphicon-chevron-left:before{
+	content: "《"
+}
+.glyphicon-chevron-right:before{
+	content: "》"
+}
+
+@media (max-width: 767px){
+	.rights{
+		display: none;
+	}
+	.carousel{
+		width: 100% !important;
+		height: 100% !important;
+	}
+	.slide{
+		width: 100% !important;
+		height: 100% !important;
+	}
+
+}
+
+.carousel{
+	width: 65%;
+	height: 100%;
+	position: relative;
+}
+
+.carousel-inner {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+.carousel-inner > .item {
+  display: none;
+  position: relative;
+  -webkit-transition: 0.6s ease-in-out left;
+  -o-transition: 0.6s ease-in-out left;
+  transition: 0.6s ease-in-out left;
+}
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+  line-height: 1;
+}
+@media all and (transform-3d), (-webkit-transform-3d) {
+  .carousel-inner > .item {
+    -webkit-transition: -webkit-transform 0.6s ease-in-out;
+    -moz-transition: -moz-transform 0.6s ease-in-out;
+    -o-transition: -o-transform 0.6s ease-in-out;
+    transition: transform 0.6s ease-in-out;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000px;
+    -moz-perspective: 1000px;
+    perspective: 1000px;
+  }
+  .carousel-inner > .item.next,
+  .carousel-inner > .item.active.right {
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+    left: 0;
+  }
+  .carousel-inner > .item.prev,
+  .carousel-inner > .item.active.left {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+    left: 0;
+  }
+  .carousel-inner > .item.next.left,
+  .carousel-inner > .item.prev.right,
+  .carousel-inner > .item.active {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    left: 0;
+  }
+}
+.carousel-inner > .active,
+.carousel-inner > .next,
+.carousel-inner > .prev {
+  display: block;
+}
+.carousel-inner > .active {
+  left: 0;
+}
+.carousel-inner > .next,
+.carousel-inner > .prev {
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+.carousel-inner > .next {
+  left: 100%;
+}
+.carousel-inner > .prev {
+  left: -100%;
+}
+.carousel-inner > .next.left,
+.carousel-inner > .prev.right {
+  left: 0;
+}
+.carousel-inner > .active.left {
+  left: -100%;
+}
+.carousel-inner > .active.right {
+  left: 100%;
+}
+.carousel-control {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 15%;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+  font-size: 20px;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0);
+}
+.carousel-control.left {
+  background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.0001) 100%);
+  background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.0001) 100%);
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.0001) 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#80000000', endColorstr='#00000000', GradientType=1);
+}
+.carousel-control.right {
+  left: auto;
+  right: 0;
+  background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.5) 100%);
+  background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.5) 100%);
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.5) 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#80000000', GradientType=1);
+}
+.carousel-control:hover,
+.carousel-control:focus {
+  outline: 0;
+  color: #fff;
+  text-decoration: none;
+  opacity: 0.9;
+  filter: alpha(opacity=90);
+}
+.carousel-control .icon-prev,
+.carousel-control .icon-next,
+.carousel-control .glyphicon-chevron-left,
+.carousel-control .glyphicon-chevron-right {
+  position: absolute;
+  top: 50%;
+  margin-top: -10px;
+  z-index: 5;
+  display: inline-block;
+}
+.carousel-control .icon-prev,
+.carousel-control .glyphicon-chevron-left {
+  left: 50%;
+  margin-left: -10px;
+}
+.carousel-control .icon-next,
+.carousel-control .glyphicon-chevron-right {
+  right: 50%;
+  margin-right: -10px;
+}
+.carousel-control .icon-prev,
+.carousel-control .icon-next {
+  width: 20px;
+  height: 20px;
+  line-height: 1;
+  font-family: serif;
+}
+.carousel-control .icon-prev:before {
+  content: '\2039';
+}
+.carousel-control .icon-next:before {
+  content: '\203a';
+}
+.carousel-indicators {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  z-index: 15;
+  width: 60%;
+  margin-left: -30%;
+  padding-left: 0;
+  list-style: none;
+  text-align: center;
+}
+.carousel-indicators li {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin: 1px;
+  text-indent: -999px;
+  border: 1px solid #fff;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: #000 \9;
+  background-color: rgba(0, 0, 0, 0);
+}
+.carousel-indicators .active {
+  margin: 0;
+  width: 12px;
+  height: 12px;
+  background-color: #fff;
+}
+.carousel-caption {
+  position: absolute;
+  left: 15%;
+  right: 15%;
+  bottom: 20px;
+  z-index: 10;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+.carousel-caption .btn {
+  text-shadow: none;
+}
+@media screen and (min-width: 768px) {
+  .carousel-control .glyphicon-chevron-left,
+  .carousel-control .glyphicon-chevron-right,
+  .carousel-control .icon-prev,
+  .carousel-control .icon-next {
+    width: 30px;
+    height: 30px;
+    margin-top: -10px;
+    font-size: 30px;
+  }
+  .carousel-control .glyphicon-chevron-left,
+  .carousel-control .icon-prev {
+    margin-left: -10px;
+  }
+  .carousel-control .glyphicon-chevron-right,
+  .carousel-control .icon-next {
+    margin-right: -10px;
+  }
+  .carousel-caption {
+    left: 20%;
+    right: 20%;
+    padding-bottom: 30px;
+  }
+  .carousel-indicators {
+    bottom: 20px;
+  }
+}
+</style>
+<div height="320px" width="100%" style="border: 0px; overflow: hidden; border-radius: 10px;" scrolling="no">
+			
+	<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="3500" style="float:left">
+		<!-- 轮播（Carousel）指标 -->
+		<ol class="carousel-indicators">
+		
+		
+
+			<li data-target="#myCarousel" data-slide-to="0"></li>
+			
+
+		
+
+			<li data-target="#myCarousel" data-slide-to="1"></li>
+			
+
+		
+
+			<li data-target="#myCarousel" data-slide-to="2"></li>
+			
+
+		
+
+			<li data-target="#myCarousel" data-slide-to="3"></li>
+			
+
+		
+
+			<li data-target="#myCarousel" data-slide-to="4"></li>
+			
+
+		
+
+			<li data-target="#myCarousel" data-slide-to="5"></li>
+			
+
+		
+		</ol>
+		<!-- 轮播（Carousel）项目 -->
+		<div class="carousel-inner" style="height: 280px; border-radius: 10px; width: 100%;">
+
+		
+		 
+		
+	    	
+				<a class="item active" href="/messageboard/" target="_blank" style="height: 100%;">
+					<img src="https://blogimage-1258928558.cos.ap-guangzhou.myqcloud.com/%E8%BD%AE%E6%92%AD%E5%9B%BE/my-blog.png" style="width: 100%; height: 100%">
+				</a>
+				
+				
+
+		
+		
+	    	
+					<a class="item" href="https://github.com/996icu/996.ICU" target="_blank" style="height: 100%;">
+						<img src="https://blogimage-1258928558.cos.ap-guangzhou.myqcloud.com/%E8%BD%AE%E6%92%AD%E5%9B%BE/996.png" style="width: 100%; height: 100%;">
+					</a>
+			
+
+		
+		
+	    	
+					<a class="item" href="/tags/JVM/" target="_blank" style="height: 100%;">
+						<img src="https://blogimage-1258928558.cos.ap-guangzhou.myqcloud.com/%E8%BD%AE%E6%92%AD%E5%9B%BE/JVM.png" style="width: 100%; height: 100%;">
+					</a>
+			
+
+		
+		
+	    	
+					<a class="item" href="/posts/258aee07.html" target="_blank" style="height: 100%;">
+						<img src="https://blogimage-1258928558.cos.ap-guangzhou.myqcloud.com/%E8%BD%AE%E6%92%AD%E5%9B%BE/%E5%A4%9A%E7%BA%BF%E7%A8%8B.png" style="width: 100%; height: 100%;">
+					</a>
+			
+
+		
+		
+	    	
+					<a class="item" href="/tags/博客/" target="_blank" style="height: 100%;">
+						<img src="https://blogimage-1258928558.cos.ap-guangzhou.myqcloud.com/%E8%BD%AE%E6%92%AD%E5%9B%BE/hexo.png" style="width: 100%; height: 100%;">
+					</a>
+			
+
+		
+		
+	    	
+					<a class="item" href="https://promotion.aliyun.com/ntms/act/campus2018.html" target="_blank" style="height: 100%;">
+						<img src="https://blogimage-1258928558.cos.ap-guangzhou.myqcloud.com/%E8%BD%AE%E6%92%AD%E5%9B%BE/19010107.jpg" style="width: 100%; height: 100%;">
+					</a>
+			
+
+		
+
+	 
+		</div>
+		<!-- 轮播（Carousel）导航 -->
+		<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+		    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+		    
+		</a>
+		<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+		    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> 
+		</a>
+	</div>
+
+	<div class="rights" style="width: 30%; height: 320px; margin-right: 0px;margin-left: 20px;float: left;">
+	
+	   <!-- 天气插件 -->
+       <iframe width="420" scrolling="no" height="15%" frameborder="0" allowtransparency="true" src="//i.tianqi.com/index.php?c=code&id=12&icon=1&py=wuhan&num=2&site=12"></iframe>
+
+	   <!-- 光影留念 -->
+	   <a href="/photos/" target="_blank" style="text-align: right; width: 100%;"><img src="https://blogimage-1258928558.cos.ap-guangzhou.myqcloud.com/%E8%BD%AE%E6%92%AD%E5%9B%BE/110604_meitu_1.jpg" width="100%"></a>
+	   <div style="height: 9px;"></div>
+
+	   <!-- 推荐阅读 -->
+	   <a href="/books/" target="_blank" style="width: 100%; text-align: right;"><img src="https://blogimage-1258928558.cos.ap-guangzhou.myqcloud.com/%E8%BD%AE%E6%92%AD%E5%9B%BE/110605_meitu_2.jpg" width="100%"></a>
+	   <div style="height: 9px;"></div>
+	
+	   <!-- 留下脚印 -->
+	  <a href="/messageboard/" target="_blank" style="width: 100%; text-align: right;"><img src="https://blogimage-1258928558.cos.ap-guangzhou.myqcloud.com/%E8%BD%AE%E6%92%AD%E5%9B%BE/jiaoyin_meitu_1_meitu_1.jpg" width="100%"></a>
+	  <div style="height: 9px;"></div>
+
+	  <!-- 关于博主 -->
+	  <a href="/about/"><img src="https://blogimage-1258928558.cos.ap-guangzhou.myqcloud.com/%E8%BD%AE%E6%92%AD%E5%9B%BE/110607_meitu_3.jpg"></a>
+    </div>
+
+<div class="tag-cloud">
+  <!-- <div class="tag-cloud-title">
+      暂无标签
+  </div> -->
+  <div class="tag-cloud-tags" id="tags">
+    
+  </div>
+</div>
+<br>
+
+<script type="text/javascript">
+   var alltags=document.getElementById('tags');
+   var tags=alltags.getElementsByTagName('a');
+
+   for (var i = tags.length - 1; i >= 0; i--) {
+     var r=Math.floor(Math.random()*75+130);
+     var g=Math.floor(Math.random()*75+100);
+     var b=Math.floor(Math.random()*75+80);
+     tags[i].style.background = "rgb("+r+","+g+","+b+")";
+   }
+</script>
+
+<style type="text/css">
+    div#posts.posts-expand .tag-cloud a{
+   background-color: #f5f7f1;
+   border-radius: 6px;
+   padding-left: 10px;
+   padding-right: 10px;
+   margin-top: 18px;
+
+ }
+
+ .tag-cloud a{
+   background-color: #f5f7f1;
+   border-radius: 4px;
+   padding-right: 5px;
+   padding-left: 5px;
+   margin-right: 5px;
+   margin-left: 0px;
+   margin-top: 8px;
+   margin-bottom: 0px;
+
+ }
+
+ .tag-cloud a:before{
+      content: "🔖";
+ }
+
+ .tag-cloud-tags{
+   text-align: left;
+   counter-reset: tags;
+ }
+</style>
+
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://mjlin.top/2019/05/21/Elastic Search/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yosefu">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/touxiang.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="每日一敲">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/21/Elastic Search/" itemprop="url">Elastic Search</a></h2>
+        
+
+        <div class="post-meta">
+	    
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <font color="blue"><i class="fa fa-calendar-o"></i></font>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-21T17:29:06+08:00">
+                2019-05-21
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                 <font color="#40E0D0"><i class="fa fa-calendar-check-o"></i></font>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-07-25T14:49:25+08:00">
+                2019-07-25
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <font color="red"><i class="fa fa-folder-o"></i></font>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <font color="black"><span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web开发/" itemprop="url" rel="index">
+                    <span itemprop="name">Web开发</span>
+                  </a>
+                </span></font>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/05/21/Elastic Search/" class="leancloud_visitors" data-flag-title="Elastic Search">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.4k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  12
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          Elastic Search分布式的搜索和分析引擎Elastic Stack = Elastic Search + Logstash + Kibana
+Elastic Search 负责索引、查找和分析
+Logstash 负责收集整理数据存入Elastic Search
+Kibana 可视化分析数据，监控Elastic Stack
+在Linux上安装
+12345678curl -L -O https://artifacts.elastic.co/downloads/elasticsearch/e
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/05/21/Elastic Search/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+
+    
+    
+    
+
+    
+
+    
+
+    
+    
+    	<div>
+	   
+        </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://mjlin.top/2019/05/21/Linux指令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yosefu">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/touxiang.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="每日一敲">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/21/Linux指令/" itemprop="url">Linux基础命令</a></h2>
+        
+
+        <div class="post-meta">
+	    
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <font color="blue"><i class="fa fa-calendar-o"></i></font>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-21T17:29:06+08:00">
+                2019-05-21
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                 <font color="#40E0D0"><i class="fa fa-calendar-check-o"></i></font>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-07-25T14:50:10+08:00">
+                2019-07-25
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <font color="red"><i class="fa fa-folder-o"></i></font>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <font color="black"><span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux相关/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux相关</span>
+                  </a>
+                </span></font>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/05/21/Linux指令/" class="leancloud_visitors" data-flag-title="Linux基础命令">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  8
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          连接云服务器：1.连接服务器:    ssh  root@ip地址2.退出:  logout
+Linux指令系统：
+命令名称 [命名参数] [命令对象]
+一、日常操作1.cd指令       - 进入指定文件夹cd  目录     - 进入指定目录(也可以是文件夹对应的路径)               ~相对路径 — 绝对路径
+cd  ..       - 返回上层目录cd  ~    - 回到根目录cd  /    - 进入系统根目录
+
+ls指令        - 查看当前目录中的内容lsl
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/05/21/Linux指令/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+
+    
+    
+    
+
+    
+
+    
+
+    
+    
+    	<div>
+	   
+        </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -299,7 +1167,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yosefu">
       <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/touxiang.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -311,16 +1179,17 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/04/10/Django配置Celery执行异步任务和定时任务/" itemprop="url">Django配置Celery执行异步任务和定时任务</a></h1>
+                <a class="post-title-link" href="/2019/04/10/Django配置Celery执行异步任务和定时任务/" itemprop="url">Django配置Celery执行异步任务和定时任务</a></h2>
         
 
         <div class="post-meta">
+	    
           <span class="post-time">
             
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <font color="blue"><i class="fa fa-calendar-o"></i></font>
               </span>
               
                 <span class="post-meta-item-text">发表于</span>
@@ -331,7 +1200,19 @@
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                 <font color="#40E0D0"><i class="fa fa-calendar-check-o"></i></font>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-07-25T14:13:40+08:00">
+                2019-07-25
+              </time>
             
           </span>
 
@@ -341,17 +1222,17 @@
               <span class="post-meta-divider">|</span>
             
               <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
+                <font color="red"><i class="fa fa-folder-o"></i></font>
               </span>
               
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <font color="black"><span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/Django开发/" itemprop="url" rel="index">
                     <span itemprop="name">Django开发</span>
                   </a>
-                </span>
+                </span></font>
 
                 
                 
@@ -364,6 +1245,17 @@
           
 
           
+          
+             <span id="/2019/04/10/Django配置Celery执行异步任务和定时任务/" class="leancloud_visitors" data-flag-title="Django配置Celery执行异步任务和定时任务">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
@@ -420,7 +1312,8 @@
           
           Django配置Celery执行异步任务和定时任务celery是一个基于python开发的简单、灵活且可靠的分布式任务队列框架，支持使用任务队列的方式在分布式的机器/进程/线程上执行任务调度。采用典型的生产者-消费者模型，主要由三部分组成：
 
-消息队列broker：broker实际上就是一个MQ队列
+消息队列broker：broker实际上就是一个MQ队列服务，可以使用Redis、RabbitMQ等作为broker
+处理任务的消费者workers：broker通知worker队列中有任务，worker去队列中取出任务执行，每一个worker就是一个进程
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -432,6 +1325,10 @@
         
       
     </div>
+
+    
+
+
     
     
     
@@ -441,6 +1338,10 @@
     
 
     
+    
+    	<div>
+	   
+        </div>
 
     <footer class="post-footer">
       
@@ -480,7 +1381,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yosefu">
       <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/touxiang.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -492,16 +1393,17 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/04/10/MySQL相关知识/" itemprop="url">MySQL相关知识</a></h1>
+                <a class="post-title-link" href="/2019/04/10/MySQL相关知识/" itemprop="url">MySQL相关知识</a></h2>
         
 
         <div class="post-meta">
+	    
           <span class="post-time">
             
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <font color="blue"><i class="fa fa-calendar-o"></i></font>
               </span>
               
                 <span class="post-meta-item-text">发表于</span>
@@ -512,7 +1414,19 @@
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                 <font color="#40E0D0"><i class="fa fa-calendar-check-o"></i></font>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-07-25T14:26:06+08:00">
+                2019-07-25
+              </time>
             
           </span>
 
@@ -522,17 +1436,17 @@
               <span class="post-meta-divider">|</span>
             
               <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
+                <font color="red"><i class="fa fa-folder-o"></i></font>
               </span>
               
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <font color="black"><span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/MySQL/" itemprop="url" rel="index">
                     <span itemprop="name">MySQL</span>
                   </a>
-                </span>
+                </span></font>
 
                 
                 
@@ -545,6 +1459,17 @@
           
 
           
+          
+             <span id="/2019/04/10/MySQL相关知识/" class="leancloud_visitors" data-flag-title="MySQL相关知识">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
@@ -610,7 +1535,13 @@ R-Tree索引（空间索引）
 Full-text索引（全文索引）
 
 视图查询的快照，可以将访问权限控制到列上。
-12create view ... as select ...drop v
+12create view ... as select ...drop view ...
+
+存储过程123456create procedure ... (params)begin...end;call ...
+
+1cursor.callproc('...')
+
+触发器不能
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -622,6 +1553,10 @@ Full-text索引（全文索引）
         
       
     </div>
+
+    
+
+
     
     
     
@@ -631,6 +1566,222 @@ Full-text索引（全文索引）
     
 
     
+    
+    	<div>
+	   
+        </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://mjlin.top/2019/04/10/网络API接口设计/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yosefu">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/touxiang.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="每日一敲">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/10/网络API接口设计/" itemprop="url">网络API接口设计</a></h2>
+        
+
+        <div class="post-meta">
+	    
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <font color="blue"><i class="fa fa-calendar-o"></i></font>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-10T20:29:44+08:00">
+                2019-04-10
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                 <font color="#40E0D0"><i class="fa fa-calendar-check-o"></i></font>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-07-25T14:22:47+08:00">
+                2019-07-25
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <font color="red"><i class="fa fa-folder-o"></i></font>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <font color="black"><span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web开发/" itemprop="url" rel="index">
+                    <span itemprop="name">Web开发</span>
+                  </a>
+                </span></font>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/04/10/网络API接口设计/" class="leancloud_visitors" data-flag-title="网络API接口设计">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.3k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          网络API接口设计手机App以及使用了Ajax技术或做了前后端分离的页面都需要通过网络API（Application Programming Interface）和后台进行交互，所谓API，指的应用程序的编程接口；而网络API通常指的是基于HTTP或HTTPS协议的一个URL（统一资源定位符），通过这个URL我们可以让服务器对某个资源进行操作并返回操作的结果。基于HTTP(S)协议最大的好处就在于访问起来非常的简单方便，而且没有编程语言和应用环境上的差别。
+设计原则关键问题为移动端或者PC端设计
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/04/10/网络API接口设计/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+
+    
+    
+    
+
+    
+
+    
+
+    
+    
+    	<div>
+	   
+        </div>
 
     <footer class="post-footer">
       
@@ -670,7 +1821,7 @@ Full-text索引（全文索引）
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yosefu">
       <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/touxiang.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -682,16 +1833,17 @@ Full-text索引（全文索引）
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/04/10/禅道/" itemprop="url">禅道</a></h1>
+                <a class="post-title-link" href="/2019/04/10/禅道/" itemprop="url">禅道</a></h2>
         
 
         <div class="post-meta">
+	    
           <span class="post-time">
             
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <font color="blue"><i class="fa fa-calendar-o"></i></font>
               </span>
               
                 <span class="post-meta-item-text">发表于</span>
@@ -702,7 +1854,19 @@ Full-text索引（全文索引）
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                 <font color="#40E0D0"><i class="fa fa-calendar-check-o"></i></font>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-07-25T14:27:01+08:00">
+                2019-07-25
+              </time>
             
           </span>
 
@@ -712,17 +1876,17 @@ Full-text索引（全文索引）
               <span class="post-meta-divider">|</span>
             
               <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
+                <font color="red"><i class="fa fa-folder-o"></i></font>
               </span>
               
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <font color="black"><span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/Web开发/" itemprop="url" rel="index">
                     <span itemprop="name">Web开发</span>
                   </a>
-                </span>
+                </span></font>
 
                 
                 
@@ -735,6 +1899,17 @@ Full-text索引（全文索引）
           
 
           
+          
+             <span id="/2019/04/10/禅道/" class="leancloud_visitors" data-flag-title="禅道">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
@@ -795,7 +1970,7 @@ http://dl.cnezsoft.com/zentao/biz3.3/ZenTaoPMS.biz3.3.zbox_64.tar.gz
 
 ###1.下载
 ​    进/opt目录 wget 下载文件 4sOK
-12[roo
+12[root@izuf6bxl2249c9rw9ztpvgz ~]# cd /opt/[root@izuf6bxl2249c9rw9ztpvgz opt]# wget http://dl.cnezsoft.co
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -807,6 +1982,10 @@ http://dl.cnezsoft.com/zentao/biz3.3/ZenTaoPMS.biz3.3.zbox_64.tar.gz
         
       
     </div>
+
+    
+
+
     
     
     
@@ -816,6 +1995,10 @@ http://dl.cnezsoft.com/zentao/biz3.3/ZenTaoPMS.biz3.3.zbox_64.tar.gz
     
 
     
+    
+    	<div>
+	   
+        </div>
 
     <footer class="post-footer">
       
@@ -850,12 +2033,12 @@ http://dl.cnezsoft.com/zentao/biz3.3/ZenTaoPMS.biz3.3.zbox_64.tar.gz
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://mjlin.top/2019/04/10/网络API接口设计/">
+    <link itemprop="mainEntityOfPage" href="http://mjlin.top/2019/04/10/Docker简易上手指南/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yosefu">
       <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/touxiang.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -867,16 +2050,17 @@ http://dl.cnezsoft.com/zentao/biz3.3/ZenTaoPMS.biz3.3.zbox_64.tar.gz
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/04/10/网络API接口设计/" itemprop="url">网络API接口设计</a></h1>
+                <a class="post-title-link" href="/2019/04/10/Docker简易上手指南/" itemprop="url">Docker简易上手指南</a></h2>
         
 
         <div class="post-meta">
+	    
           <span class="post-time">
             
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <font color="blue"><i class="fa fa-calendar-o"></i></font>
               </span>
               
                 <span class="post-meta-item-text">发表于</span>
@@ -887,7 +2071,19 @@ http://dl.cnezsoft.com/zentao/biz3.3/ZenTaoPMS.biz3.3.zbox_64.tar.gz
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                 <font color="#40E0D0"><i class="fa fa-calendar-check-o"></i></font>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-07-25T14:25:22+08:00">
+                2019-07-25
+              </time>
             
           </span>
 
@@ -897,17 +2093,17 @@ http://dl.cnezsoft.com/zentao/biz3.3/ZenTaoPMS.biz3.3.zbox_64.tar.gz
               <span class="post-meta-divider">|</span>
             
               <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
+                <font color="red"><i class="fa fa-folder-o"></i></font>
               </span>
               
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <font color="black"><span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/Web开发/" itemprop="url" rel="index">
                     <span itemprop="name">Web开发</span>
                   </a>
-                </span>
+                </span></font>
 
                 
                 
@@ -920,6 +2116,17 @@ http://dl.cnezsoft.com/zentao/biz3.3/ZenTaoPMS.biz3.3.zbox_64.tar.gz
           
 
           
+          
+             <span id="/2019/04/10/Docker简易上手指南/" class="leancloud_visitors" data-flag-title="Docker简易上手指南">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
@@ -935,7 +2142,7 @@ http://dl.cnezsoft.com/zentao/biz3.3/ZenTaoPMS.biz3.3.zbox_64.tar.gz
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.3k
+                  2.3k
                 </span>
               
 
@@ -951,7 +2158,7 @@ http://dl.cnezsoft.com/zentao/biz3.3/ZenTaoPMS.biz3.3.zbox_64.tar.gz
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4
+                  9
                 </span>
               
             </div>
@@ -974,11 +2181,13 @@ http://dl.cnezsoft.com/zentao/biz3.3/ZenTaoPMS.biz3.3.zbox_64.tar.gz
       
         
           
-          网络API接口设计手机App以及使用了Ajax技术或做了前后端分离的页面都需要通过网络API（Application Programming Interface）和后台进行交互，所谓API，指的应用程序的编程接口；而网络API通常指的是基于HTTP或HTTPS协议的一个URL（统一资源定位符），通过
+          Docker简易上手指南Docker简介软件开发中最为麻烦的事情可能就是配置环境了。由于用户使用的操作系统具有多样性，即便使用跨平台的开发语言（如Java和Python）都不能保证代码能够在各种平台下都可以正常的运转，而且可能在不同的环境下我们的软件需要依赖的其他软件包也是不一样的。
+那么问题来了，我们安装软件的时候可不可以把软件运行的环境一并安装？我们是不是可以把原始环境一模一样地复制过来呢？
+虚拟机（virtual machine）就是带环境安装的一种解决方案，它可以在一种操作系统里面运行另
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/04/10/网络API接口设计/#more" rel="contents">
+            <a class="btn" href="/2019/04/10/Docker简易上手指南/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -986,6 +2195,10 @@ http://dl.cnezsoft.com/zentao/biz3.3/ZenTaoPMS.biz3.3.zbox_64.tar.gz
         
       
     </div>
+
+    
+
+
     
     
     
@@ -995,6 +2208,10 @@ http://dl.cnezsoft.com/zentao/biz3.3/ZenTaoPMS.biz3.3.zbox_64.tar.gz
     
 
     
+    
+    	<div>
+	   
+        </div>
 
     <footer class="post-footer">
       
@@ -1034,7 +2251,7 @@ http://dl.cnezsoft.com/zentao/biz3.3/ZenTaoPMS.biz3.3.zbox_64.tar.gz
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yosefu">
       <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/touxiang.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1046,16 +2263,17 @@ http://dl.cnezsoft.com/zentao/biz3.3/ZenTaoPMS.biz3.3.zbox_64.tar.gz
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/04/10/迭代器和生成器/" itemprop="url">迭代器和生成器</a></h1>
+                <a class="post-title-link" href="/2019/04/10/迭代器和生成器/" itemprop="url">迭代器和生成器</a></h2>
         
 
         <div class="post-meta">
+	    
           <span class="post-time">
             
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <font color="blue"><i class="fa fa-calendar-o"></i></font>
               </span>
               
                 <span class="post-meta-item-text">发表于</span>
@@ -1066,7 +2284,19 @@ http://dl.cnezsoft.com/zentao/biz3.3/ZenTaoPMS.biz3.3.zbox_64.tar.gz
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                 <font color="#40E0D0"><i class="fa fa-calendar-check-o"></i></font>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-07-25T14:22:00+08:00">
+                2019-07-25
+              </time>
             
           </span>
 
@@ -1076,17 +2306,17 @@ http://dl.cnezsoft.com/zentao/biz3.3/ZenTaoPMS.biz3.3.zbox_64.tar.gz
               <span class="post-meta-divider">|</span>
             
               <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
+                <font color="red"><i class="fa fa-folder-o"></i></font>
               </span>
               
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <font color="black"><span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/Python基础/" itemprop="url" rel="index">
                     <span itemprop="name">Python基础</span>
                   </a>
-                </span>
+                </span></font>
 
                 
                 
@@ -1099,6 +2329,17 @@ http://dl.cnezsoft.com/zentao/biz3.3/ZenTaoPMS.biz3.3.zbox_64.tar.gz
           
 
           
+          
+             <span id="/2019/04/10/迭代器和生成器/" class="leancloud_visitors" data-flag-title="迭代器和生成器">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
@@ -1162,7 +2403,7 @@ http://dl.cnezsoft.com/zentao/biz3.3/ZenTaoPMS.biz3.3.zbox_64.tar.gz
 
 迭代器是访问集合内元素的一种方式，一般用来遍历数据
 
-迭代器和以下标的访问方式不一样，
+迭代器和以下标的访问方式不一样，迭代器是不能返回的（比如下标方式 list[2],之后可以访问list[0],list[1]，而迭代器不能返回，只能next），迭代器提供了一种惰性方式获取数据（就是只有在访问数据的时候才去计算或者说
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1174,6 +2415,10 @@ http://dl.cnezsoft.com/zentao/biz3.3/ZenTaoPMS.biz3.3.zbox_64.tar.gz
         
       
     </div>
+
+    
+
+
     
     
     
@@ -1183,186 +2428,10 @@ http://dl.cnezsoft.com/zentao/biz3.3/ZenTaoPMS.biz3.3.zbox_64.tar.gz
     
 
     
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://mjlin.top/2019/04/10/Docker简易上手指南/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Yosefu">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="每日一敲">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/10/Docker简易上手指南/" itemprop="url">Docker简易上手指南</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-10T20:29:44+08:00">
-                2019-04-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Web开发/" itemprop="url" rel="index">
-                    <span itemprop="name">Web开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2.3k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  9
-                </span>
-              
-            </div>
-          
-
-          
-
+    	<div>
+	   
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          Docker简易上手指南Docker简介软件开发中最为麻烦的事情可能就是配置环境了。由于用户使用的操作系统具有多样性，即便使用跨平台的开发语言（如Java和Python）都不能保证代码能够在各种平台下都可以正常的运转，而且可能在不同的环境下我们的软件需要依赖的其他软件包也是不一样的。
-那么问题来了，
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/04/10/Docker简易上手指南/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
 
     <footer class="post-footer">
       
@@ -1402,7 +2471,7 @@ http://dl.cnezsoft.com/zentao/biz3.3/ZenTaoPMS.biz3.3.zbox_64.tar.gz
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yosefu">
       <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/touxiang.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1414,16 +2483,17 @@ http://dl.cnezsoft.com/zentao/biz3.3/ZenTaoPMS.biz3.3.zbox_64.tar.gz
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/04/10/redis的使用/" itemprop="url">认识Redis</a></h1>
+                <a class="post-title-link" href="/2019/04/10/redis的使用/" itemprop="url">认识Redis</a></h2>
         
 
         <div class="post-meta">
+	    
           <span class="post-time">
             
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <font color="blue"><i class="fa fa-calendar-o"></i></font>
               </span>
               
                 <span class="post-meta-item-text">发表于</span>
@@ -1434,7 +2504,19 @@ http://dl.cnezsoft.com/zentao/biz3.3/ZenTaoPMS.biz3.3.zbox_64.tar.gz
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                 <font color="#40E0D0"><i class="fa fa-calendar-check-o"></i></font>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-07-25T14:26:45+08:00">
+                2019-07-25
+              </time>
             
           </span>
 
@@ -1444,17 +2526,17 @@ http://dl.cnezsoft.com/zentao/biz3.3/ZenTaoPMS.biz3.3.zbox_64.tar.gz
               <span class="post-meta-divider">|</span>
             
               <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
+                <font color="red"><i class="fa fa-folder-o"></i></font>
               </span>
               
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <font color="black"><span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/Web开发/" itemprop="url" rel="index">
                     <span itemprop="name">Web开发</span>
                   </a>
-                </span>
+                </span></font>
 
                 
                 
@@ -1467,6 +2549,17 @@ http://dl.cnezsoft.com/zentao/biz3.3/ZenTaoPMS.biz3.3.zbox_64.tar.gz
           
 
           
+          
+             <span id="/2019/04/10/redis的使用/" class="leancloud_visitors" data-flag-title="认识Redis">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
@@ -1521,7 +2614,7 @@ http://dl.cnezsoft.com/zentao/biz3.3/ZenTaoPMS.biz3.3.zbox_64.tar.gz
       
         
           
-          redis一、简介1.1.概念​     redis是一个key-value存储系统。和Memcached类似，它支持存储的value类型相对更多，包括string(字符串)、list(链表)、set(集合)、zset(sorted set –有序集合)和hash（哈希类型）。这些数据类型都支持pu
+          redis一、简介1.1.概念​     redis是一个key-value存储系统。和Memcached类似，它支持存储的value类型相对更多，包括string(字符串)、list(链表)、set(集合)、zset(sorted set –有序集合)和hash（哈希类型）。这些数据类型都支持push/pop、add/remove及取交集并集和差集及更丰富的操作，而且这些操作都是原子性的。在此基础上，redis支持各种不同方式的排序。与memcached一样，为了保证效率，数据都是缓存在内存中
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1533,6 +2626,10 @@ http://dl.cnezsoft.com/zentao/biz3.3/ZenTaoPMS.biz3.3.zbox_64.tar.gz
         
       
     </div>
+
+    
+
+
     
     
     
@@ -1542,6 +2639,10 @@ http://dl.cnezsoft.com/zentao/biz3.3/ZenTaoPMS.biz3.3.zbox_64.tar.gz
     
 
     
+    
+    	<div>
+	   
+        </div>
 
     <footer class="post-footer">
       
@@ -1581,7 +2682,7 @@ http://dl.cnezsoft.com/zentao/biz3.3/ZenTaoPMS.biz3.3.zbox_64.tar.gz
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yosefu">
       <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/touxiang.jpeg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1593,16 +2694,17 @@ http://dl.cnezsoft.com/zentao/biz3.3/ZenTaoPMS.biz3.3.zbox_64.tar.gz
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/04/10/Ubuntu踩坑记录/" itemprop="url">Ubuntu踩坑纪录</a></h1>
+                <a class="post-title-link" href="/2019/04/10/Ubuntu踩坑记录/" itemprop="url">Ubuntu踩坑纪录</a></h2>
         
 
         <div class="post-meta">
+	    
           <span class="post-time">
             
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <font color="blue"><i class="fa fa-calendar-o"></i></font>
               </span>
               
                 <span class="post-meta-item-text">发表于</span>
@@ -1613,7 +2715,19 @@ http://dl.cnezsoft.com/zentao/biz3.3/ZenTaoPMS.biz3.3.zbox_64.tar.gz
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                 <font color="#40E0D0"><i class="fa fa-calendar-check-o"></i></font>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-07-25T14:24:14+08:00">
+                2019-07-25
+              </time>
             
           </span>
 
@@ -1623,17 +2737,17 @@ http://dl.cnezsoft.com/zentao/biz3.3/ZenTaoPMS.biz3.3.zbox_64.tar.gz
               <span class="post-meta-divider">|</span>
             
               <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
+                <font color="red"><i class="fa fa-folder-o"></i></font>
               </span>
               
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <font color="black"><span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/Linux相关/" itemprop="url" rel="index">
                     <span itemprop="name">Linux相关</span>
                   </a>
-                </span>
+                </span></font>
 
                 
                 
@@ -1646,6 +2760,17 @@ http://dl.cnezsoft.com/zentao/biz3.3/ZenTaoPMS.biz3.3.zbox_64.tar.gz
           
 
           
+          
+             <span id="/2019/04/10/Ubuntu踩坑记录/" class="leancloud_visitors" data-flag-title="Ubuntu踩坑纪录">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
@@ -1703,7 +2828,10 @@ http://dl.cnezsoft.com/zentao/biz3.3/ZenTaoPMS.biz3.3.zbox_64.tar.gz
           1. pip3安装1.更换Ubuntu国内的软件源
 Ubuntu系统自带的源都是国外的网址，国内用户在使用的时候网速比较慢。一个软件的下载是十分缓慢的，甚至在安装一些软件或者库的时候，是不能成功下载的，所以非常建议大家更换国内的源，这里建议大家使用阿里源，步骤如下：
 备份原来的源：输入命令
-1sud
+1sudo cp /etc/apt/sources.list /etc/apt/sources_init.list
+
+更换源：使用vi打开文档：(可以换成vim打开，下面vi 改 vim)
+1sudo vi 
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1715,6 +2843,10 @@ Ubuntu系统自带的源都是国外的网址，国内用户在使用的时候�
         
       
     </div>
+
+    
+
+
     
     
     
@@ -1724,187 +2856,10 @@ Ubuntu系统自带的源都是国外的网址，国内用户在使用的时候�
     
 
     
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://mjlin.top/2019/04/10/进程/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Yosefu">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="每日一敲">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/10/进程/" itemprop="url">进程 线程 协程 异步IO</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-10T20:29:44+08:00">
-                2019-04-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/多线程和多进程/" itemprop="url" rel="index">
-                    <span itemprop="name">多线程和多进程</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2.4k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  10
-                </span>
-              
-            </div>
-          
-
-          
-
+    	<div>
+	   
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          进程 线程 协程 异步IO线程和进程对比
-使用线程的方式不能很好的使用多核cpu的能力
-12345678910111213import randomimport threadingresults = []def compute():   results.append(sum(       [rand
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/04/10/进程/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
 
     <footer class="post-footer">
       
@@ -1929,6 +2884,10 @@ Ubuntu系统自带的源都是国外的网址，国内用户在使用的时候�
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1961,8 +2920,10 @@ Ubuntu系统自带的源都是国外的网址，国内用户在使用的时候�
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
+              <img class="site-author-image" itemprop="image" src="/images/touxiang.jpeg" alt="Yosefu">
+            
               <p class="site-author-name" itemprop="name">Yosefu</p>
-              <p class="site-description motion-element" itemprop="description">本站为本人平时学习时搜集的一些资料，主要是Python开发相关技术。</p>
+              <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
           <nav class="site-state motion-element">
@@ -1972,7 +2933,7 @@ Ubuntu系统自带的源都是国外的网址，国内用户在使用的时候�
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1996,11 +2957,51 @@ Ubuntu系统自带的源都是国外的网址，国内用户在使用的时候�
           
 
           
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/CCWAY" target="_blank" title="Github">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/3a7058917b62" target="_blank" title="jianshu">
+                      
+                        <i class="fa fa-fw fa-jianshu"></i></a>
+                  </span>
+                
+            </div>
+          
 
           
           
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
+              </a>
+            </div>
+          
 
           
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                圈子里有着一群强悍的程序猿&nbsp;<i class="fa fa-fw fa-globe fa-flip-horizontal"></i>
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://github.com/jackfrued/Python-100-Days" title="一个将编程玩到极致的大佬" target="_blank">一个将编程玩到极致的大佬</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.codesheep.cn/" title="Python路上引领我的导师" target="_blank">Python路上引领我的导师</a>
+                  </li>
+                
+              </ul>
+            </div>
           
 
           
@@ -2011,51 +3012,58 @@ Ubuntu系统自带的源都是国外的网址，国内用户在使用的时候�
       
 
       
-        <div class="back-to-top">
-          <i class="fa fa-arrow-up"></i>
-          
-            <span id="scrollpercent"><span>0</span>%</span>
-          
-        </div>
-      
-
     </div>
   </aside>
 
 
         
       </div>
-    </main>
+    </div></main>
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
         <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
-    <i class="fa fa-[object Object]"></i>
+    <font color="red"><i class="fa fa-heartbeat" aria-hidden="true"></i></font>
   </span>
   <span class="author" itemprop="copyrightHolder">Yosefu</span>
+  &nbsp;<a href="http://www.miitbeian.gov.cn/"><font size="2px">鄂ICP备19008535号</font></a>
 
-  
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-area-chart"></i>
-    </span>
-    
-      <span class="post-meta-item-text">Site words total count&#58;</span>
-    
-    <span title="Site words total count">13.8k</span>
   
 </div>
 
 
 
 
+<div style="width:300px;margin:0 auto; padding:0 0;">
+   <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42011102003147" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="https://blogimage-1258928558.cos.ap-guangzhou.myqcloud.com/beian/%E5%A4%87%E6%A1%88%E5%9B%BE%E6%A0%87.png" style="float:left;height:90%;width:auto;"><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;letter-spacing:0px"><font size="2px">鄂公网安备 42011102003147号</font></p></a>
+</div>
 
 
 
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user">&nbsp;访客量：</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye">&nbsp;访问量：</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
 
 
 
@@ -2067,6 +3075,13 @@ Ubuntu系统自带的源都是国外的网址，国内用户在使用的时候�
       </div>
     </footer>
 
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
     
 
     
@@ -2088,8 +3103,6 @@ Ubuntu系统自带的源都是国外的网址，国内用户在使用的时候�
 
 
 
-
-  
 
 
 
@@ -2125,11 +3138,6 @@ Ubuntu系统自带的源都是国外的网址，国内用户在使用的时候�
   
   
     <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
   
 
 
@@ -2513,17 +3521,181 @@ Ubuntu系统自带的源都是国外的网址，国内用户在使用的时候�
   
 
   
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("", "");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
 
   
 
   
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
   
 
   
 
   
+<script>
+  $('.highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('复制成功');
+        else $(this).text('复制失败');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
 
   
 
+  
+
+  <script type="text/javascript" src="/js/src/image.js"></script>
+  <script type="text/javascript" src="/js/src/linkcard.js"></script>
+  <script type="text/javascript" src="/js/src/clicksocialvalue.js"></script>
+  <script type="text/javascript" src="/js/src/clicklove.js"></script>
+  <script src="/live2d-widget/autoload.js"></script>
 </body>
 </html>
